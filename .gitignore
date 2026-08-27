@@ -1,0 +1,13 @@
+# Local environment files
+.env.*
+
+# Air and Go build/test output
+/tmp/
+/bin/
+/hooklens
+*.test
+*.out
+coverage.html
+
+# macOS metadata
+.DS_Store
