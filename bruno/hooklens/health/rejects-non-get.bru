@@ -1,0 +1,15 @@
+meta {
+  name: Reject non-GET health requests
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v1/health
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
