@@ -1,0 +1,15 @@
+meta {
+  name: GET inboxes
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/inboxes
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
