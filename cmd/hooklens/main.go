@@ -10,13 +10,21 @@ import (
 
 	"server/internal/health"
 	"server/internal/httpapi"
+	"server/internal/inbox"
 	"server/internal/ping"
 	"server/internal/server"
+	"server/internal/storage"
 )
 
 const version = "0.1.0"
 
 func main() {
+	database, err := storage.Open()
+	if err != nil {
+		log.Fatalf("database startup failed: %v", err)
+	}
+	defer database.Close()
+
 	healthService := health.NewService(
 		"hooklens",
 		version,
@@ -32,9 +40,14 @@ func main() {
 		pingService,
 	)
 
+	inboxRepository := inbox.NewRepository(database)
+	inboxService := inbox.NewService(inboxRepository)
+	inboxHandler := httpapi.NewInboxHandler(inboxService)
+
 	router := httpapi.NewRouter(
 		healthHandler,
 		pingHandler,
+		inboxHandler,
 	)
 
 	httpServer := server.New(
