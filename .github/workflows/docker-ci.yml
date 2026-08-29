@@ -1,4 +1,4 @@
-name: CI Linux & Docker
+name: Docker CI
 
 on:
   pull_request:
@@ -10,31 +10,13 @@ permissions:
   contents: read
 
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.ref }}
+  group: docker-ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: Build Go on Linux
-    runs-on: ubuntu-24.04
-
-    steps:
-      - name: Check out source
-        uses: actions/checkout@v6
-
-      - name: Set up Go
-        uses: actions/setup-go@v7
-        with:
-          go-version-file: go.mod
-          cache: true
-
-      - name: Build
-        run: go build ./...
-
   docker:
     name: Build Docker image
     runs-on: ubuntu-24.04
-    needs: build
 
     steps:
       - name: Check out source
