@@ -26,6 +26,13 @@ curl -X POST http://localhost:8080/api/inboxes \
   -d '{"name":"Support"}'
 
 curl http://localhost:8080/api/inboxes
+
+curl -X POST http://localhost:8080/api/inboxes/1/events \
+  -H 'Content-Type: application/json' \
+  -H 'X-Request-ID: request-123' \
+  -d '{"type":"order.created","orderId":"123"}'
+
+curl http://localhost:8080/api/inboxes/1/events
 ```
 
 HookLens creates its SQLite database at the operating system's user config

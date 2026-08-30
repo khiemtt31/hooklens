@@ -43,11 +43,13 @@ func main() {
 	inboxRepository := inbox.NewRepository(database)
 	inboxService := inbox.NewService(inboxRepository)
 	inboxHandler := httpapi.NewInboxHandler(inboxService)
+	eventHandler := httpapi.NewEventHandler(inboxService)
 
 	router := httpapi.NewRouter(
 		healthHandler,
 		pingHandler,
 		inboxHandler,
+		eventHandler,
 	)
 
 	httpServer := server.New(

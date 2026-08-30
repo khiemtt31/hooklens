@@ -15,3 +15,5 @@ Requests included:
 - `POST ping` — sends a `pong` string and verifies it is returned.
 - `POST inbox` — creates a named inbox.
 - `GET inboxes` — lists the stored inboxes.
+- `POST event` — captures a request for inbox `1`.
+- `GET events` — lists captured requests for inbox `1`.
