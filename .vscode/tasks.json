@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start HookLens Air",
+      "type": "shell",
+      "command": "air",
+      "args": [
+        "-c",
+        ".air.toml"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "go",
+        "pattern": {
+          "regexp": "a^"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "building\\.\\.\\.",
+          "endsPattern": "API server listening at"
+        }
+      }
+    }
+  ]
+}

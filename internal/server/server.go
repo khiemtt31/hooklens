@@ -16,9 +16,9 @@ func New(address string, handler http.Handler) *Server {
 		httpServer: &http.Server{
 			Addr:              address,
 			Handler:           handler,
-			ReadHeaderTimeout: 5 * time.Second,
-			ReadTimeout:       10 * time.Second,
-			WriteTimeout:      10 * time.Second,
+			ReadHeaderTimeout: 3 * time.Second,
+			ReadTimeout:       30 * time.Second,
+			WriteTimeout:      30 * time.Second,
 			IdleTimeout:       60 * time.Second,
 		},
 	}
